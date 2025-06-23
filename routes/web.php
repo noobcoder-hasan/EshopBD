@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WelcomeController;
 
 Route::get('/', [WelcomeController::class, 'index'])->name('home');
+Route::get('/product/image/{productId}', [WelcomeController::class, 'getProductImage'])->name('product.image');
 Route::get('/search', [WelcomeController::class, 'search'])->name('search.products');
 
 use App\Http\Controllers\DashboardController;

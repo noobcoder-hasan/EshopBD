@@ -1,43 +1,39 @@
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="text-xl font-semibold text-gray-800 leading-tight">
-            Blog Page
+        <h1 class="text-2xl font-bold text-gray-800 leading-tight">
+            Blog Submission
         </h1>
+        <p class="text-gray-500 text-sm mt-1">Share your latest project with the EshopBD community</p>
     </x-slot>
 
-    <div class="container mx-auto px-4 py-6">
-        <!-- Blog Form -->
-        <div class="form-container bg-black shadow-lg rounded-lg p-6 mb-6">
-            <form action="/blog" method="POST">
-                @csrf
-                <div class="mb-4">
-                    <label for="username" class="block font-medium text-gray-700">Username:</label>
-                    <input type="text" id="username" name="username" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md" value="{{ Auth::user()->name }}" readonly required>
-                </div>
-                
-                <div class="mb-4">
-                    <label for="title" class="block font-medium text-gray-700">Project Name:</label>
-                    <input type="text" id="title" name="title" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md" required>
-                </div>
-                
-                <div class="mb-4">
-                    <label for="blog_text" class="block font-medium text-gray-700">Project Description:</label>
-                    <textarea id="blog_text" name="blog_text" rows="5" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-md" required></textarea>
-                </div>
-                <button type="submit" class="w-full bg-black text-black py-2 rounded-md hover:bg-gray-800">
-                    Submit
-                </button>
-
-
-            </form>
+    <div class="min-h-screen bg-gradient-to-br from-blue-100 via-blue-300 to-indigo-200 flex items-center justify-center px-4 py-8">
+        <div class="w-full max-w-2xl">
+            <!-- Blog Form -->
+            <div class="bg-white shadow-lg rounded-xl p-8 mb-8 border border-gray-100">
+                <form action="/blog" method="POST" class="space-y-6">
+                    @csrf
+                    <div>
+                        <label for="username" class="block text-sm font-medium text-gray-700">Username</label>
+                        <input type="text" id="username" name="username" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition" value="{{ Auth::user()->name }}" readonly required>
+                    </div>
+                    <div>
+                        <label for="title" class="block text-sm font-medium text-gray-700">Project Name</label>
+                        <input type="text" id="title" name="title" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition" required>
+                    </div>
+                    <div>
+                        <label for="blog_text" class="block text-sm font-medium text-gray-700">Project Description</label>
+                        <textarea id="blog_text" name="blog_text" rows="5" class="mt-1 block w-full px-4 py-2 border border-gray-300 rounded-lg bg-gray-50 focus:border-blue-500 focus:ring-2 focus:ring-blue-100 transition" required></textarea>
+                    </div>
+                    <button type="submit" class="w-full bg-blue-600 text-white font-semibold py-3 rounded-lg shadow hover:bg-blue-700 transition">Submit</button>
+                </form>
+            </div>
+            <div class="flex justify-between items-center mb-4">
+                <a href="{{ route('viewblogs') }}" class="text-blue-600 hover:underline font-medium">View Blogs</a>
+            </div>
+            <!-- Success Message -->
+            @if (session('success'))
+                <p class="text-green-600 text-center font-semibold bg-green-50 border border-green-200 rounded-lg py-2 mb-4">{{ session('success') }}</p>
+            @endif
         </div>
-        <a href="{{ route('viewblogs') }}" class="text-blue-500">View Blogs</a>
-
-        <!-- Success Message -->
-        @if (session('success'))
-            <p class="success-message text-green-500 text-center font-bold">{{ session('success') }}</p>
-        @endif
-
     </div>
-
 </x-app-layout>
