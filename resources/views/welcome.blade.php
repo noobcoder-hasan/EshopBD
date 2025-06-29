@@ -5,6 +5,8 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Welcome</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
+
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body { font-family: 'Montserrat', sans-serif; }
@@ -13,36 +15,63 @@
 <body class="bg-gradient-to-br from-gray-100 to-blue-50 min-h-screen antialiased">
     <!-- Navbar -->
     <nav class="bg-white/90 shadow-lg backdrop-blur sticky top-0 z-30">
-        <div class="container mx-auto px-6 py-4 flex justify-between items-center">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
+            <!-- Logo -->
             <div class="flex items-center space-x-3">
                 <img src="https://img.icons8.com/ios-filled/50/4F46E5/shopping-cart.png" alt="Logo" class="h-8 w-8">
                 <span class="text-2xl font-extrabold text-indigo-700 tracking-tight">EShopBD</span>
             </div>
-            <ul class="hidden md:flex space-x-6">
-                <li><a href="/login" class="text-gray-600 hover:text-indigo-700 transition">Login</a></li>
-                <li><a href="/register" class="text-gray-600 hover:text-indigo-700 transition">Register</a></li>
-                <li><a href="/admin/login" class="text-gray-600 hover:text-indigo-700 transition">Admin</a></li>
-            </ul>
-            <div class="flex items-center space-x-3">
-                <!-- Search Bar -->
-                <form action="{{ route('search.products') }}" method="GET" class="flex items-center bg-white rounded-full shadow px-2 py-1">
-                    <input type="text" name="query" placeholder="Search products..." class="px-3 py-1 bg-transparent focus:outline-none text-sm" value="{{ request()->query('query') }}">
-                    <button type="submit" class="px-3 py-1 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition text-sm">Search</button>
-                </form>
-                <!-- Category Filter Dropdown -->
-                <form action="{{ route('home') }}" method="GET" class="flex items-center">
-                    <select name="category" class="p-2 bg-indigo-600 text-white rounded-full shadow hover:bg-indigo-500 text-sm">
-                        <option value="">Category</option>
-                        @foreach ($categories as $category)
-                            <option value="{{ $category }}" {{ $selectedCategory == $category ? 'selected' : '' }}>
-                                {{ $category }}
-                            </option>
-                        @endforeach
-                    </select>
-                    <button type="submit" class="ml-2 p-2 bg-blue-600 text-white rounded-full shadow hover:bg-blue-700 transition text-sm">
-                        Filter
+
+            <!-- Right section: Admin + User Dropdown + Search + Category -->
+            <div class="flex flex-wrap items-center space-x-6 mt-2 md:mt-0">
+                
+                <!-- Admin Link -->
+                <a href="/admin/login" class="text-gray-600 hover:text-indigo-700 transition">
+                    Admin
+                </a>
+
+                <!-- User Dropdown -->
+                <div x-data="{ open: false }" class="relative">
+                    <button @click="open = !open" class="flex items-center space-x-2 text-gray-600 hover:text-indigo-700 transition focus:outline-none">
+                        <span>User</span>
+                        <svg class="w-4 h-4 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
+                        </svg>
                     </button>
-                </form>
+                    <div
+                        x-show="open"
+                        @click.away="open = false"
+                        x-transition
+                        class="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-lg shadow-lg z-50"
+                    >
+                        <a href="/login" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition">Login</a>
+                        <a href="/register" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition">Register</a>
+                    </div>
+                </div>
+
+                <!-- Search and Filter -->
+                <div class="flex items-center space-x-3">
+                    <!-- Search Bar -->
+                    <form action="{{ route('search.products') }}" method="GET" class="flex items-center bg-white rounded-full shadow px-2 py-1">
+                        <input type="text" name="query" placeholder="Search products..." class="px-3 py-1 bg-transparent focus:outline-none text-sm" value="{{ request()->query('query') }}">
+                        <button type="submit" class="px-3 py-1 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition text-sm">Search</button>
+                    </form>
+
+                    <!-- Category Dropdown -->
+                    <form action="{{ route('home') }}" method="GET" class="flex items-center">
+                        <select name="category" class="p-2 bg-indigo-600 text-white rounded-full shadow hover:bg-indigo-500 text-sm">
+                            <option value="">Category</option>
+                            @foreach ($categories as $category)
+                                <option value="{{ $category }}" {{ $selectedCategory == $category ? 'selected' : '' }}>
+                                    {{ $category }}
+                                </option>
+                            @endforeach
+                        </select>
+                        <button type="submit" class="ml-2 p-2 bg-blue-600 text-white rounded-full shadow hover:bg-blue-700 transition text-sm">
+                            Filter
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </nav>
