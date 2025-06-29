@@ -11,33 +11,27 @@
                 <div class="p-6 text-slate-900">
 
                     <!-- Search and Filter Section -->
-                    <div class="flex justify-between items-center mb-6">
-                        <div class="flex space-x-4">
-                            <!-- Search Input -->
-                            <input type="text" placeholder="Search products..." class="p-2 border border-slate-300 rounded-md bg-slate-50 text-slate-800 focus:border-blue-700 focus:ring-2 focus:ring-blue-200 transition" id="searchInput">
-                            
-                            <!-- Search Button -->
-                            <button id="searchButton" class="p-2 bg-blue-800 text-white rounded-md hover:bg-blue-900 transition font-semibold">
-                                Search
-                            </button>
-                            
-                            <!-- Filter Dropdown -->
-                                
-                            <form action="{{ route('dashboard') }}" method="GET" class="flex items-center">
-                                <select name="category" class="p-2 bg-indigo-600 text-white rounded-full shadow hover:bg-indigo-500 text-sm">
-                                    <option value="">Category</option>
-                                    @foreach ($categories as $category)
-                                        <option value="{{ $category }}" {{ $selectedCategory == $category ? 'selected' : '' }}>
-                                            {{ $category }}
-                                        </option>
-                                    @endforeach
-                                </select>
-                                <button type="submit" class="ml-2 p-2 bg-blue-600 text-white rounded-full shadow hover:bg-blue-700 transition text-sm">
-                                    Filter
-                                </button>
-                            </form>
-                        </div>
+                    <div class="flex justify-between items-center mb-6 flex-wrap gap-4">
+                        <!-- Search Form -->
+                        <form action="{{ route('search.products') }}" method="GET" class="flex items-center bg-white rounded-full shadow px-2 py-1">
+                            <input type="text" name="query" placeholder="Search products..." class="px-3 py-1 bg-transparent focus:outline-none text-sm" value="{{ request()->query('query') }}">
+                            <button type="submit" class="px-3 py-1 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition text-sm">Search</button>
+                        </form>
 
+                        <!-- Filter Form -->
+                        <form action="{{ route('dashboard') }}" method="GET" class="flex items-center">
+                            <select name="category" class="p-2 bg-indigo-600 text-white rounded-full shadow hover:bg-indigo-500 text-sm">
+                                <option value="">Category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category }}" {{ $selectedCategory == $category ? 'selected' : '' }}>
+                                        {{ $category }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <button type="submit" class="ml-2 p-2 bg-blue-600 text-white rounded-full shadow hover:bg-blue-700 transition text-sm">
+                                Filter
+                            </button>
+                        </form>
                     </div>
 
                     <hr class="my-6">
@@ -58,10 +52,12 @@
                             </div>
                         @endforeach
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
+
 
     <script>
         // Search button functionality
