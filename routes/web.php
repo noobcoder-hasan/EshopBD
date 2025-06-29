@@ -17,6 +17,8 @@ Route::get('/search', [WelcomeController::class, 'search'])->name('search.produc
 use App\Http\Controllers\DashboardController;
 
 Route::get('/dashboard', [DashboardController::class, 'showDashboard'])->middleware(['auth', 'verified'])->name('dashboard');
+Route::get('/search-products', [DashboardController::class, 'search'])->name('search.products');
+
 
 
 
