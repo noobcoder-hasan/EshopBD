@@ -22,19 +22,22 @@
                             </button>
                             
                             <!-- Filter Dropdown -->
-                            <select class="p-2 border border-slate-300 rounded-md bg-slate-50 text-slate-800 focus:border-blue-700 focus:ring-2 focus:ring-blue-200 transition" id="filterSelect">
-                                <option value="">Filter by Brand</option>
-                                <option value="brand1">Brand 1</option>
-                                <option value="brand2">Brand 2</option>
-                                <option value="brand3">Brand 3</option>
-                                <!-- Add more filter options as needed -->
-                            </select>
+                                
+                            <form action="{{ route('dashboard') }}" method="GET" class="flex items-center">
+                                <select name="category" class="p-2 bg-indigo-600 text-white rounded-full shadow hover:bg-indigo-500 text-sm">
+                                    <option value="">Category</option>
+                                    @foreach ($categories as $category)
+                                        <option value="{{ $category }}" {{ $selectedCategory == $category ? 'selected' : '' }}>
+                                            {{ $category }}
+                                        </option>
+                                    @endforeach
+                                </select>
+                                <button type="submit" class="ml-2 p-2 bg-blue-600 text-white rounded-full shadow hover:bg-blue-700 transition text-sm">
+                                    Filter
+                                </button>
+                            </form>
                         </div>
 
-                        <!-- Apply Filters Button -->
-                        <button id="applyFilters" class="p-2 bg-green-600 text-white rounded-md hover:bg-green-800 transition font-semibold">
-                            Apply Filters
-                        </button>
                     </div>
 
                     <hr class="my-6">
