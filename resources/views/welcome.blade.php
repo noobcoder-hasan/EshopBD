@@ -50,22 +50,42 @@
         }
         
         /* Modern Classes */
-        .animate-float { animation: float 6s ease-in-out infinite; }
-        .animate-pulse-glow { animation: pulse-glow 2s ease-in-out infinite; }
-        .animate-slide-left { animation: slideInFromLeft 1s ease-out; }
-        .animate-slide-right { animation: slideInFromRight 1s ease-out; }
-        .animate-fade-up { animation: fadeInUp 0.8s ease-out; }
+        .animate-float { 
+            animation: float 6s ease-in-out infinite; 
+            will-change: transform;
+        }
+        
+        .animate-pulse-glow { 
+            animation: pulse-glow 2s ease-in-out infinite; 
+            will-change: box-shadow;
+        }
+        
+        .animate-slide-left { 
+            animation: slideInFromLeft 1s ease-out; 
+            will-change: transform, opacity;
+        }
+        
+        .animate-slide-right { 
+            animation: slideInFromRight 1s ease-out; 
+            will-change: transform, opacity;
+        }
+        
+        .animate-fade-up { 
+            animation: fadeInUp 0.8s ease-out; 
+            will-change: transform, opacity;
+        }
+        
         .animate-rotate { animation: rotate 20s linear infinite; }
         
         .glassmorphism {
             background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.2);
         }
         
         .glassmorphism-dark {
             background: rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(20px);
+            backdrop-filter: blur(12px);
             border: 1px solid rgba(255, 255, 255, 0.1);
         }
         
@@ -103,6 +123,7 @@
         
         .card-hover {
             transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            will-change: transform, box-shadow;
         }
         
         .card-hover:hover {
@@ -650,16 +671,25 @@
             observer.observe(el);
         });
 
-        // Parallax effect for floating elements
-        window.addEventListener('scroll', () => {
+        // Optimized Parallax effect for floating elements
+        const parallaxElements = document.querySelectorAll('.floating-shapes');
+        let ticking = false;
+
+        const updateParallax = () => {
             const scrolled = window.pageYOffset;
-            const parallaxElements = document.querySelectorAll('.floating-shapes');
-            
             parallaxElements.forEach((element, index) => {
-                const speed = 0.5 + (index * 0.1);
+                const speed = 0.3 + (index * 0.05); // Reduced speed for better performance
                 element.style.transform = `translateY(${scrolled * speed}px)`;
             });
-        });
+            ticking = false;
+        };
+
+        window.addEventListener('scroll', () => {
+            if (!ticking) {
+                window.requestAnimationFrame(updateParallax);
+                ticking = true;
+            }
+        }, { passive: true });
     </script>
 </body>
 </html>
