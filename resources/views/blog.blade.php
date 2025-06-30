@@ -1,9 +1,11 @@
 <x-app-layout>
     <x-slot name="header">
-        <h1 class="text-2xl font-bold text-gray-800 leading-tight">
-            Blog Submission
-        </h1>
-        <p class="text-gray-500 text-sm mt-1">Share your latest project with the EshopBD community</p>
+        <div class="flex flex-col">
+            <h1 class="text-2xl font-bold text-gray-800 leading-tight">
+                Blog Submission
+            </h1>
+            <p class="text-gray-500 text-sm mt-1">Share your latest project with the EshopBD community</p>
+        </div>
     </x-slot>
 
     <div class="min-h-screen bg-gradient-to-br from-blue-100 via-blue-300 to-indigo-200 flex items-center justify-center px-4 py-8">
