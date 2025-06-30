@@ -490,7 +490,7 @@
                     <div class="glassmorphism rounded-3xl p-6 border border-white/10 card-hover group">
                         <div class="relative mb-6">
                             <div class="w-full h-48 flex items-center justify-center overflow-hidden rounded-2xl bg-white/5">
-                                <img src="{{ route('product.image', $product->product_id) }}" 
+                                <img src="{{ asset($product->product_image) }}"
                                      alt="{{ $product->product_name }}" 
                                      class="object-contain h-40 group-hover:scale-110 transition-transform duration-500">
                             </div>
