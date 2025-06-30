@@ -266,20 +266,7 @@
                         <button type="submit" class="px-3 py-1 bg-blue-700 text-blue-100 rounded-full hover:bg-blue-600 transition text-sm">Search</button>
                     </form>
 
-                    <!-- Category Dropdown -->
-                    <form action="{{ route('home') }}" method="GET" class="flex items-center">
-                        <select name="category" class="p-2 bg-blue-700 text-blue-100 rounded-full shadow hover:bg-blue-600 text-sm">
-                            <option value="">Category</option>
-                            @foreach ($categories as $category)
-                                <option value="{{ $category }}" {{ $selectedCategory == $category ? 'selected' : '' }}>
-                                    {{ $category }}
-                                </option>
-                            @endforeach
-                        </select>
-                        <button type="submit" class="ml-2 p-2 bg-blue-800 text-blue-100 rounded-full shadow hover:bg-blue-700 transition text-sm">
-                            Filter
-                        </button>
-                    </form>
+                   
                 </div>
             </div>
         </div>
@@ -695,7 +682,7 @@
             const scrolled = window.pageYOffset;
             parallaxElements.forEach((element, index) => {
                 const speed = 0.3 + (index * 0.05); // Reduced speed for better performance
-                element.style.transform = `translateY(${scrolled * speed}px)`;
+                element.style.transform = translateY(${scrolled * speed}px);
             });
             ticking = false;
         };
