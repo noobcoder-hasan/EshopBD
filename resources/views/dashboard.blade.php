@@ -40,13 +40,27 @@
 
                     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
                         @foreach ($products as $product)
-                            <div class="bg-slate-100 p-4 rounded-md shadow-sm">
-                                <img src="{{ route('product.image', $product->product_id) }}" alt="{{ $product->product_name }}">
-                                <h4 class="text-xl font-semibold text-slate-800">{{ $product->product_name }}</h4>
-                                <p class="text-lg text-blue-800">৳{{ number_format($product->product_price, 2) }}</p>
-                                <a href="{{ route('product.details', ['product_id' => $product->product_id]) }}" class="block mt-2">
-                                    <button class="rounded-md bg-slate-800 px-3 py-2 text-sm font-semibold text-white shadow-sm hover:bg-slate-900 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-slate-700 transition">
-                                        Details
+                            <div class="simplecard p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 animate-product-card group cursor-pointer border border-blue-100 bg-white" style="animation-delay: {{ $loop->index * 0.1 }}s">
+                                <div class="relative overflow-hidden rounded-xl mb-4">
+                                    <img src="{{ route('product.image', $product->product_id) }}" alt="{{ $product->product_name }}" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105">
+                                    <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                        <div class="bg-blue-50 rounded-full p-2 shadow">
+                                            <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4.318 6.318a4.5 4.5 0 000 6.364L12 20.364l7.682-7.682a4.5 4.5 0 00-6.364-6.364L12 7.636l-1.318-1.318a4.5 4.5 0 00-6.364 0z"/>
+                                            </svg>
+                                        </div>
+                                    </div>
+                                </div>
+                                <h4 class="text-xl font-bold text-blue-900 group-hover:text-blue-700 transition-colors duration-300 mb-2">{{ $product->product_name }}</h4>
+                                <p class="text-2xl text-blue-700 font-bold group-hover:text-blue-500 transition-colors duration-300 mb-4">৳{{ number_format($product->product_price, 2) }}</p>
+                                <a href="{{ route('product.details', ['product_id' => $product->product_id]) }}" class="block">
+                                    <button class="w-full rounded-xl simplebtn px-4 py-3 text-sm font-semibold shadow hover:shadow-md hover:bg-blue-50 active:scale-95 group-hover:shadow-xl transition-all duration-300">
+                                        <span class="flex items-center justify-center space-x-2">
+                                            <span>View Details</span>
+                                            <svg class="w-4 h-4 transform group-hover:translate-x-1 transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/>
+                                            </svg>
+                                        </span>
                                     </button>
                                 </a>
                             </div>

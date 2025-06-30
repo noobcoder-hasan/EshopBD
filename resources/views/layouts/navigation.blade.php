@@ -27,7 +27,7 @@
                         <x-nav-link :href="route('cart.show')" :active="request()->routeIs('cart.show')">
                             <i class="fa-solid fa-cart-shopping mr-2 text-indigo-500"></i>{{ __('Cart') }}
                         </x-nav-link>
-                        <x-nav-link :href="route('my.orders')" :active="request()->routeIs('cart.show')">
+                        <x-nav-link :href="route('my.orders')" :active="request()->routeIs('my.orders')">
                             <i class="fa-solid fa-box mr-2 text-indigo-500"></i>{{ __('MyOrders') }}
                         </x-nav-link>
                     </div>

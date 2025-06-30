@@ -90,14 +90,55 @@
         </div>
     </section>
 
-    <!-- Body -->
-    <div id="products" class="container mx-auto px-6 py-8">
-        <h2 class="text-3xl font-bold text-gray-800 mb-8 text-center">Featured Products</h2>
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
-            @foreach ($products as $product)
-                <div class="bg-white rounded-2xl shadow-xl p-6 flex flex-col items-center transition-transform transform hover:-translate-y-2 hover:shadow-2xl group">
-                    <div class="w-full h-48 flex items-center justify-center mb-4 overflow-hidden rounded-xl bg-gray-50">
-                        <img src="{{ route('product.image', $product->product_id) }}" alt="{{ $product->product_name }}" class="object-contain h-40 group-hover:scale-105 transition-transform duration-300">
+    <!-- Featured Products - Modern Grid -->
+    <section id="products" class="py-20 relative">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 animate-fade-up">
+                <h2 class="text-5xl font-black gradient-text mb-6 neon-glow">Featured Products</h2>
+                <p class="text-xl text-white/80">Discover our curated collection of premium electronics</p>
+            </div>
+            
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
+                @foreach ($products as $product)
+                    <div class="glassmorphism rounded-3xl p-6 border border-white/10 card-hover group">
+                        <div class="relative mb-6">
+                            <div class="w-full h-48 flex items-center justify-center overflow-hidden rounded-2xl bg-white/5">
+                                <img src="{{ route('product.image', $product->product_id) }}" 
+                                     alt="{{ $product->product_name }}" 
+                                     class="object-contain h-40 group-hover:scale-110 transition-transform duration-500">
+                            </div>
+                            <div class="absolute top-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                                <div class="w-10 h-10 bg-white/20 backdrop-blur-md rounded-full flex items-center justify-center">
+                                    <i class="fas fa-heart text-white"></i>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <h3 class="text-lg font-bold text-white mb-2 text-center group-hover:text-blue-300 transition-colors duration-300">
+                            {{ $product->product_name }}
+                        </h3>
+                        <p class="text-white/60 text-sm mb-4 text-center line-clamp-2">
+                            {{ $product->product_description }}
+                        </p>
+                        <p class="text-2xl font-black gradient-text mb-6 text-center">&#2547;{{ $product->product_price }}</p>
+                        
+                        @if (Auth::check())
+                            <a href="{{ route('product.details', $product->product_id) }}" 
+                               class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 px-6 rounded-2xl font-bold text-center block hover:scale-105 transition-all duration-300 glow-effect">
+                                <span class="flex items-center justify-center space-x-2">
+                                    <i class="fas fa-eye"></i>
+                                    <span>View Details</span>
+                                </span>
+                            </a>
+                        @else
+                            <a href="{{ route('login') }}" 
+                               class="w-full bg-gradient-to-r from-blue-500 to-blue-600 text-white py-3 px-6 rounded-2xl font-bold text-center block hover:scale-105 transition-all duration-300 glow-effect">
+                                <span class="flex items-center justify-center space-x-2">
+                                    <i class="fas fa-sign-in-alt"></i>
+                                    <span>Login to View</span>
+                                </span>
+                            </a>
+                        @endif
                     </div>
                     <h3 class="text-lg font-bold text-indigo-700 mb-1 text-center">{{ $product->product_name }}</h3>
                     <p class="text-gray-500 text-sm mb-2 text-center line-clamp-2">{{ $product->product_description }}</p>
