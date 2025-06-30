@@ -11,6 +11,7 @@
                 <div class="p-8 text-slate-800">
 
                     <!-- Search and Filter Section -->
+<<<<<<< HEAD
                     <div class="flex justify-between items-center mb-8 animate-fade-in-delay">
                         <div class="flex space-x-4">
                             <!-- Search Input -->
@@ -60,6 +61,29 @@
                             </span>
                             <div class="absolute inset-0 bg-gradient-to-r from-cyan-600 to-blue-600 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left"></div>
                         </button>
+=======
+                    <div class="flex justify-between items-center mb-6 flex-wrap gap-4">
+                        <!-- Search Form -->
+                        <form action="{{ route('search.products') }}" method="GET" class="flex items-center bg-white rounded-full shadow px-2 py-1">
+                            <input type="text" name="query" placeholder="Search products..." class="px-3 py-1 bg-transparent focus:outline-none text-sm" value="{{ request()->query('query') }}">
+                            <button type="submit" class="px-3 py-1 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition text-sm">Search</button>
+                        </form>
+
+                        <!-- Filter Form -->
+                        <form action="{{ route('dashboard') }}" method="GET" class="flex items-center">
+                            <select name="category" class="p-2 bg-indigo-600 text-white rounded-full shadow hover:bg-indigo-500 text-sm">
+                                <option value="">Category</option>
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category }}" {{ $selectedCategory == $category ? 'selected' : '' }}>
+                                        {{ $category }}
+                                    </option>
+                                @endforeach
+                            </select>
+                            <button type="submit" class="ml-2 p-2 bg-blue-600 text-white rounded-full shadow hover:bg-blue-700 transition text-sm">
+                                Filter
+                            </button>
+                        </form>
+>>>>>>> e4b8ea88e1e219e358ca7411caaab31891c48b6b
                     </div>
 
                     <hr class="my-8 border-blue-200 animate-fade-in-delay-2">
@@ -95,11 +119,13 @@
                             </div>
                         @endforeach
                     </div>
+
                 </div>
             </div>
         </div>
     </div>
 
+<<<<<<< HEAD
     <style>
         @keyframes fade-in {
             from {
@@ -215,6 +241,8 @@
             border: 1px solid rgba(59, 130, 246, 0.1);
         }
     </style>
+=======
+>>>>>>> e4b8ea88e1e219e358ca7411caaab31891c48b6b
 
     <script>
         // Search button functionality with loading animation
