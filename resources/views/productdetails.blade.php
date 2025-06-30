@@ -9,7 +9,7 @@
     <div class="max-w-4xl mx-auto bg-white rounded-2xl shadow-lg p-8 flex flex-col md:flex-row gap-8">
       <!-- Product Image -->
       <div class="flex-shrink-0 flex justify-center items-center">
-        <img src="{{ route('product.image', $product->product_id) }}" alt="{{ $product->product_name }}" class="w-72 h-72 object-contain rounded-lg shadow">
+        <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_name }}" class="w-72 h-72 object-contain rounded-lg shadow">
       </div>
       <div class="flex-1 flex flex-col justify-between">
         <div>

@@ -37,7 +37,7 @@
                         @foreach ($products as $product)
                             <div class="simplecard p-6 rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 transform hover:-translate-y-3 animate-product-card group cursor-pointer border border-blue-100 bg-white" style="animation-delay: {{ $loop->index * 0.1 }}s">
                                 <div class="relative overflow-hidden rounded-xl mb-4">
-                                    <img src="{{ route('product.image', $product->product_id) }}" alt="{{ $product->product_name }}" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105">
+                                    <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_name }}" class="w-full h-52 object-cover transition-transform duration-500 group-hover:scale-105">
                                     <div class="absolute top-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
                                         <div class="bg-blue-50 rounded-full p-2 shadow">
                                             <svg class="w-5 h-5 text-blue-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
