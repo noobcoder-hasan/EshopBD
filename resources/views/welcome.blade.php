@@ -5,14 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>EShopBD - Modern Electronics Store</title>
     <script src="https://cdn.tailwindcss.com"></script>
-<<<<<<< HEAD
+    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-=======
-    <script src="https://cdn.jsdelivr.net/npm/alpinejs@3.x.x/dist/cdn.min.js" defer></script>
-
-    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
->>>>>>> e4b8ea88e1e219e358ca7411caaab31891c48b6b
     <style>
         body { 
             font-family: 'Inter', sans-serif; 
@@ -26,8 +21,60 @@
         }
         
         @keyframes pulse-glow {
-            0%, 100% { box-shadow: 0 0 20px rgba(59, 130, 246, 0.3); }
-            50% { box-shadow: 0 0 40px rgba(59, 130, 246, 0.6); }
+            0%, 100% { box-shadow: 0 0 32px 0 rgba(34,212,255,0.25), 0 0 0 0 rgba(0,255,255,0.10); }
+            50% { box-shadow: 0 0 64px 0 rgba(34,212,255,0.45), 0 0 0 0 rgba(0,255,255,0.18); }
+        }
+        
+        @keyframes animatedGradient {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+        
+        .modern-bg-animated {
+            position: fixed;
+            inset: 0;
+            z-index: 0;
+            pointer-events: none;
+            background: linear-gradient(120deg, #0a2540 0%, #0e2a47 40%, #193b6a 70%, #0a2540 100%);
+            background-size: 300% 300%;
+            opacity: 0.22;
+            animation: animatedGradient 12s ease-in-out infinite;
+        }
+        
+        .glassmorphism {
+            background: rgba(34,212,255,0.13);
+            backdrop-filter: blur(18px) saturate(160%);
+            border: 1.5px solid rgba(34,212,255,0.18);
+            box-shadow: 0 8px 32px 0 rgba(34,212,255,0.10);
+        }
+        
+        .gradient-bg {
+            background: linear-gradient(135deg, #38bdf8 0%, #0ea5e9 50%, #6366f1 100%);
+        }
+        
+        .gradient-text {
+            background: linear-gradient(90deg, #38bdf8 0%, #0ea5e9 50%, #6366f1 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        
+        .neon-glow {
+            text-shadow: 0 0 8px #38bdf8, 0 0 16px #0ea5e9, 0 0 32px #6366f1;
+        }
+        
+        .modern-btn {
+            background: linear-gradient(90deg, #38bdf8 0%, #0ea5e9 50%, #6366f1 100%);
+            color: #fff;
+            border: none;
+            border-radius: 9999px;
+            box-shadow: 0 4px 24px 0 rgba(34,212,255,0.18);
+            transition: box-shadow 0.3s, transform 0.3s;
+        }
+        .modern-btn:hover {
+            box-shadow: 0 8px 32px 0 rgba(34,212,255,0.35);
+            transform: scale(1.08);
         }
         
         @keyframes slideInFromLeft {
@@ -82,41 +129,6 @@
         }
         
         .animate-rotate { animation: rotate 20s linear infinite; }
-        
-        .glassmorphism {
-            background: rgba(255, 255, 255, 0.1);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-        }
-        
-        .glassmorphism-dark {
-            background: rgba(0, 0, 0, 0.1);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-        }
-        
-        .gradient-bg {
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 50%, #0ea5e9 100%);
-        }
-        
-        .gradient-text {
-            background: linear-gradient(135deg, #3b82f6 0%, #1d4ed8 100%);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            background-clip: text;
-        }
-        
-        .gradient-border {
-            background: linear-gradient(135deg, #3b82f6, #1d4ed8, #0ea5e9);
-            padding: 2px;
-            border-radius: 1rem;
-        }
-        
-        .shimmer {
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
-            background-size: 200% 100%;
-            animation: shimmer 2s infinite;
-        }
         
         .floating-shapes {
             position: absolute;
@@ -199,8 +211,9 @@
         }
     </style>
 </head>
-<<<<<<< HEAD
-<body class="bg-gradient-to-br from-slate-900 via-blue-900 to-slate-900 min-h-screen antialiased relative overflow-x-hidden">
+<body class="bg-gradient-to-br from-blue-950 via-blue-900 to-blue-950 min-h-screen antialiased relative overflow-x-hidden">
+    <div class="modern-bg-animated"></div>
+
     <!-- Floating Background Elements -->
     <div class="fixed inset-0 overflow-hidden pointer-events-none">
         <div class="floating-shapes animate-float" style="top: 10%; left: 10%; animation-delay: 0s;"></div>
@@ -209,90 +222,26 @@
         <div class="floating-shapes animate-float" style="bottom: 10%; right: 10%; animation-delay: 1s;"></div>
     </div>
 
-    <!-- Modern Navbar -->
-    <nav class="glassmorphism sticky top-0 z-50 border-b border-white/10">
-        <div class="container mx-auto px-6 py-4">
-            <div class="flex justify-between items-center">
-                <div class="flex items-center space-x-3 animate-slide-left">
-                    <div class="relative">
-                        <div class="w-10 h-10 bg-gradient-to-r from-blue-500 to-blue-600 rounded-xl flex items-center justify-center animate-pulse-glow">
-                            <i class="fas fa-shopping-cart text-white text-lg"></i>
-                        </div>
-                        <div class="absolute -top-1 -right-1 w-4 h-4 bg-red-500 rounded-full animate-pulse"></div>
-                    </div>
-                    <span class="text-2xl font-black gradient-text tracking-tight">EShopBD</span>
-                </div>
-                
-                <ul class="hidden md:flex space-x-8">
-                    <li><a href="/login" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110 flex items-center space-x-2">
-                        <i class="fas fa-sign-in-alt"></i>
-                        <span>Login</span>
-                    </a></li>
-                    <li><a href="/register" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110 flex items-center space-x-2">
-                        <i class="fas fa-user-plus"></i>
-                        <span>Register</span>
-                    </a></li>
-                    <li><a href="/admin/login" class="text-white/80 hover:text-white transition-all duration-300 hover:scale-110 flex items-center space-x-2">
-                        <i class="fas fa-crown"></i>
-                        <span>Admin</span>
-                    </a></li>
-                </ul>
-                
-                <div class="flex items-center space-x-4 animate-slide-right">
-                    <!-- Modern Search Bar -->
-                    <div class="relative group">
-                        <form action="{{ route('search.products') }}" method="GET" class="flex items-center">
-                            <div class="relative">
-                                <input type="text" name="query" placeholder="Search products..." 
-                                       class="w-64 px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white placeholder-white/60 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-300 group-hover:bg-white/20"
-                                       value="{{ request()->query('query') }}">
-                                <button type="submit" class="absolute right-2 top-1/2 transform -translate-y-1/2 p-1.5 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full hover:scale-110 transition-all duration-300">
-                                    <i class="fas fa-search text-sm"></i>
-                                </button>
-                            </div>
-                        </form>
-                    </div>
-                    
-                    <!-- Modern Category Filter -->
-                    <div class="relative group">
-                        <form action="{{ route('home') }}" method="GET" class="flex items-center space-x-2">
-                            <select name="category" class="px-4 py-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full text-white focus:outline-none focus:ring-2 focus:ring-blue-500 transition-all duration-300 group-hover:bg-white/20">
-                                <option value="" class="bg-slate-800">Category</option>
-                                @foreach ($categories as $category)
-                                    <option value="{{ $category }}" {{ $selectedCategory == $category ? 'selected' : '' }} class="bg-slate-800">
-                                        {{ $category }}
-                                    </option>
-                                @endforeach
-                            </select>
-                            <button type="submit" class="px-4 py-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white rounded-full hover:scale-110 transition-all duration-300 flex items-center space-x-2">
-                                <i class="fas fa-filter"></i>
-                                <span>Filter</span>
-                            </button>
-                        </form>
-                    </div>
-                </div>
-=======
-<body class="bg-gradient-to-br from-gray-100 to-blue-50 min-h-screen antialiased">
     <!-- Navbar -->
-    <nav class="bg-white/90 shadow-lg backdrop-blur sticky top-0 z-30">
+    <nav class="bg-gradient-to-r from-blue-900 via-blue-800 to-blue-950/90 shadow-lg backdrop-blur sticky top-0 z-30 border-b border-blue-800">
         <div class="container mx-auto px-6 py-4 flex flex-wrap justify-between items-center">
             <!-- Logo -->
             <div class="flex items-center space-x-3">
-                <img src="https://img.icons8.com/ios-filled/50/4F46E5/shopping-cart.png" alt="Logo" class="h-8 w-8">
-                <span class="text-2xl font-extrabold text-indigo-700 tracking-tight">EShopBD</span>
+                <img src="https://img.icons8.com/ios-filled/50/60A5FA/shopping-cart.png" alt="Logo" class="h-8 w-8">
+                <span class="text-2xl font-extrabold text-blue-200 tracking-tight">EShopBD</span>
             </div>
 
             <!-- Right section: Admin + User Dropdown + Search + Category -->
             <div class="flex flex-wrap items-center space-x-6 mt-2 md:mt-0">
                 
                 <!-- Admin Link -->
-                <a href="/admin/login" class="text-gray-600 hover:text-indigo-700 transition">
+                <a href="/admin/login" class="text-blue-200 hover:text-blue-400 transition">
                     Admin
                 </a>
 
                 <!-- User Dropdown -->
                 <div x-data="{ open: false }" class="relative">
-                    <button @click="open = !open" class="flex items-center space-x-2 text-gray-600 hover:text-indigo-700 transition focus:outline-none">
+                    <button @click="open = !open" class="flex items-center space-x-2 text-blue-200 hover:text-blue-400 transition focus:outline-none">
                         <span>User</span>
                         <svg class="w-4 h-4 mt-0.5" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" d="M19 9l-7 7-7-7" />
@@ -302,24 +251,24 @@
                         x-show="open"
                         @click.away="open = false"
                         x-transition
-                        class="absolute right-0 mt-2 w-40 bg-white border border-gray-200 rounded-lg shadow-lg z-50"
+                        class="absolute right-0 mt-2 w-40 bg-blue-900 border border-blue-700 rounded-lg shadow-lg z-50"
                     >
-                        <a href="/login" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition">Login</a>
-                        <a href="/register" class="block px-4 py-2 text-gray-700 hover:bg-indigo-50 hover:text-indigo-700 transition">Register</a>
+                        <a href="/login" class="block px-4 py-2 text-blue-100 hover:bg-blue-800 hover:text-blue-400 transition">Login</a>
+                        <a href="/register" class="block px-4 py-2 text-blue-100 hover:bg-blue-800 hover:text-blue-400 transition">Register</a>
                     </div>
                 </div>
 
                 <!-- Search and Filter -->
                 <div class="flex items-center space-x-3">
                     <!-- Search Bar -->
-                    <form action="{{ route('search.products') }}" method="GET" class="flex items-center bg-white rounded-full shadow px-2 py-1">
-                        <input type="text" name="query" placeholder="Search products..." class="px-3 py-1 bg-transparent focus:outline-none text-sm" value="{{ request()->query('query') }}">
-                        <button type="submit" class="px-3 py-1 bg-indigo-600 text-white rounded-full hover:bg-indigo-700 transition text-sm">Search</button>
+                    <form action="{{ route('search.products') }}" method="GET" class="flex items-center bg-blue-800/80 rounded-full shadow px-2 py-1">
+                        <input type="text" name="query" placeholder="Search products..." class="px-3 py-1 bg-transparent focus:outline-none text-sm text-blue-100 placeholder-blue-300" value="{{ request()->query('query') }}">
+                        <button type="submit" class="px-3 py-1 bg-blue-700 text-blue-100 rounded-full hover:bg-blue-600 transition text-sm">Search</button>
                     </form>
 
                     <!-- Category Dropdown -->
                     <form action="{{ route('home') }}" method="GET" class="flex items-center">
-                        <select name="category" class="p-2 bg-indigo-600 text-white rounded-full shadow hover:bg-indigo-500 text-sm">
+                        <select name="category" class="p-2 bg-blue-700 text-blue-100 rounded-full shadow hover:bg-blue-600 text-sm">
                             <option value="">Category</option>
                             @foreach ($categories as $category)
                                 <option value="{{ $category }}" {{ $selectedCategory == $category ? 'selected' : '' }}>
@@ -327,12 +276,11 @@
                                 </option>
                             @endforeach
                         </select>
-                        <button type="submit" class="ml-2 p-2 bg-blue-600 text-white rounded-full shadow hover:bg-blue-700 transition text-sm">
+                        <button type="submit" class="ml-2 p-2 bg-blue-800 text-blue-100 rounded-full shadow hover:bg-blue-700 transition text-sm">
                             Filter
                         </button>
                     </form>
                 </div>
->>>>>>> e4b8ea88e1e219e358ca7411caaab31891c48b6b
             </div>
         </div>
     </nav>
@@ -348,7 +296,7 @@
                             <span class="text-white/90 text-sm font-medium">Trusted by 10,000+ customers</span>
                         </div>
                         
-                        <h1 class="text-5xl lg:text-7xl font-black text-white leading-tight">
+                        <h1 class="text-5xl lg:text-7xl font-black text-white leading-tight neon-glow">
                             Welcome to 
                             <span class="gradient-text animate-pulse">EShopBD</span>
                         </h1>
@@ -358,12 +306,11 @@
                         </p>
                         
                         <div class="flex flex-col sm:flex-row gap-4">
-                            <a href="#products" class="group relative px-8 py-4 bg-gradient-to-r from-blue-500 to-blue-600 text-white font-bold rounded-full overflow-hidden transition-all duration-300 hover:scale-105 glow-effect">
+                            <a href="#products" class="group relative px-8 py-4 modern-btn font-bold rounded-full overflow-hidden transition-all duration-300 hover:scale-105">
                                 <span class="relative z-10 flex items-center space-x-2">
                                     <i class="fas fa-shopping-bag"></i>
                                     <span>Shop Now</span>
                                 </span>
-                                <div class="absolute inset-0 bg-gradient-to-r from-blue-600 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
                             </a>
                             
                             <a href="#about" class="px-8 py-4 border-2 border-white/20 text-white font-bold rounded-full hover:bg-white/10 transition-all duration-300 flex items-center space-x-2">
@@ -414,7 +361,7 @@
     <section id="about" class="py-20 relative">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 animate-fade-up">
-                <h2 class="text-5xl font-black gradient-text mb-6">About EShopBD</h2>
+                <h2 class="text-5xl font-black gradient-text mb-6 neon-glow">About EShopBD</h2>
                 <p class="text-xl text-white/80 max-w-3xl mx-auto">Your premier destination for cutting-edge electronics and innovative technology solutions</p>
             </div>
             
@@ -547,7 +494,7 @@
     <section id="products" class="py-20 relative">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 animate-fade-up">
-                <h2 class="text-5xl font-black gradient-text mb-6">Featured Products</h2>
+                <h2 class="text-5xl font-black gradient-text mb-6 neon-glow">Featured Products</h2>
                 <p class="text-xl text-white/80">Discover our curated collection of premium electronics</p>
             </div>
             
@@ -602,13 +549,13 @@
                     <p class="text-white/80 mb-6 text-lg">Ready to explore the future of electronics?</p>
                     @if (Auth::check())
                         <a href="{{ route('dashboard') }}" 
-                           class="inline-flex items-center space-x-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white py-4 px-8 rounded-2xl font-bold hover:scale-105 transition-all duration-300 glow-effect">
+                           class="inline-flex items-center space-x-3 modern-btn py-4 px-8 font-bold hover:scale-105 transition-all duration-300">
                             <i class="fas fa-rocket"></i>
                             <span>Launch Dashboard</span>
                         </a>
                     @else
                         <a href="{{ route('login') }}" 
-                           class="inline-flex items-center space-x-3 bg-gradient-to-r from-blue-500 to-blue-600 text-white py-4 px-8 rounded-2xl font-bold hover:scale-105 transition-all duration-300 glow-effect">
+                           class="inline-flex items-center space-x-3 modern-btn py-4 px-8 font-bold hover:scale-105 transition-all duration-300">
                             <i class="fas fa-play"></i>
                             <span>Get Started</span>
                         </a>
