@@ -113,7 +113,7 @@
           <div class="product-grid">
               @foreach($compareProducts as $product)
                   <div class="product-card" id="product-{{ $product->product_id }}">
-                      <img src="{{ route('product.image', $product->product_id) }}" alt="{{ $product->product_name }}">
+                      <img src="{{ asset($product->product_image) }}" alt="{{ $product->product_name }}">
 
                       <h2>{{ $product->product_name }}</h2>
                       <p class="price">
